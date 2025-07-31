@@ -651,7 +651,7 @@ def constituency_results(df):
                 """, unsafe_allow_html=True)
             else:
                 st.markdown(f"""
-                <div style="background-color: #000000; color:f0f0f0; padding: 8px; border-radius: 5px; margin: 3px 0;">
+                <div style="background-color: #f0f0f0; padding: 8px; border-radius: 5px; margin: 3px 0;">
                     • <b>{row['Candidate']}</b> ({row['Party']}) - {row['Total Votes']:,} votes ({row['Vote Share']:.2f}%)
                 </div>
                 """, unsafe_allow_html=True)
