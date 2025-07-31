@@ -649,15 +649,7 @@ def constituency_results(df):
                     🏆 WINNER: <b>{row['Candidate']}</b> ({row['Party']}) - {row['Total Votes']:,} votes ({row['Vote Share']:.2f}%)
                 </div>
                 """, unsafe_allow_html=True)
-                 
-                  elif idx == 1:  # Runner-up - Orange Color
-        st.markdown(f"""
-        <div style="background-color: #FF9800; padding: 10px; border-radius: 5px; margin: 5px 0;">
-            🥈 RUNNER-UP: <b>{row['Candidate']}</b> ({row['Party']}) - {row['Total Votes']:,} votes ({row['Vote Share']:.2f}%)
-        </div>
-        """, unsafe_allow_html=True)
-
-            
+               
             else:
                 st.markdown(f"""
                 <div style="background-color: #f0f0f0; padding: 8px; border-radius: 5px; margin: 3px 0;">
