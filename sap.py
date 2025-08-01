@@ -5,6 +5,9 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import numpy as np
 import io
+import folium
+from streamlit_folium import st_folium
+import geopandas as gpd
 
 # Page configuration
 st.set_page_config(
@@ -374,6 +377,7 @@ def create_top_margins_chart(margin_df):
     
     return fig
 
+
 def dashboard_overview(df):
     """Display the enhanced dashboard overview with styled metric cards and visualizations."""
     
@@ -454,8 +458,6 @@ def dashboard_overview(df):
     
     metrics = calculate_dashboard_metrics(df)
 
-    
-    
     # --- Display Metrics in Two Rows ---
     st.markdown('<div class="section-header">📊 National Snapshot</div>', unsafe_allow_html=True)
     
@@ -474,7 +476,7 @@ def dashboard_overview(df):
         st.markdown(f'''
         <div class="metric-card">
             <div class="metric-card-icon">🏛️</div>
-            <div class="metric-value">{metrics['total_constituencies']}</div>
+            <div class="metric-value">543</div>
             <div class="metric-label">Constituencies</div>
         </div>
         ''', unsafe_allow_html=True)
@@ -595,10 +597,15 @@ def dashboard_overview(df):
         st.success(f"🏆 **Landslide Victories:** {landslide_wins} constituencies won by more than 1 lakh votes")
     
     with insight_col3:
-        avg_candidates_per_seat = metrics['total_candidates'] / metrics['total_constituencies']
+        # Fixed calculation using 543 constituencies
+        avg_candidates_per_seat = metrics['total_candidates'] / 543
         st.warning(f"👥 **Competition Level:** Average {avg_candidates_per_seat:.1f} candidates per constituency")
 
-# -----------------------------
+
+
+
+# ---------
+
 
 
 
@@ -640,7 +647,10 @@ def constituency_results(df):
         with col4:
             st.metric("Winning Party", winner['Party'])
         
-        # Display results in a formatted table
+      
+
+
+    #   Display results in a formatted table
         st.subheader("📋 Candidate Performance")
         for idx, row in constituency_data.iterrows():
             if row['Winner']:
@@ -656,6 +666,8 @@ def constituency_results(df):
                     • <b>{row['Candidate']}</b> ({row['Party']}) - {row['Total Votes']:,} votes ({row['Vote Share']:.2f}%)
                 </div>
                 """, unsafe_allow_html=True)
+
+
         
         # Victory margin analysis
         if len(constituency_data) > 1:
