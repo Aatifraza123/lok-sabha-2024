@@ -10,7 +10,7 @@ import io
 # Page configuration
 st.set_page_config(
     page_title="2024 Lok Sabha Election Analysis",
-    page_icon="🗳️",
+    page_icon="",
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -452,19 +452,19 @@ def dashboard_overview(df):
     </style>
     """, unsafe_allow_html=True)
     
-    st.markdown('<h1 class="main-header">🗳️ 2024 Lok Sabha Election Analysis Dashboard</h1>', unsafe_allow_html=True)
+    st.markdown('<h1 class="main-header">2024 Lok Sabha Election Analysis Dashboard</h1>', unsafe_allow_html=True)
     
     metrics = calculate_dashboard_metrics(df)
 
     # --- Display Metrics in Two Rows ---
-    st.markdown('<div class="section-header">📊 National Snapshot</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-header">National Snapshot</div>', unsafe_allow_html=True)
     
     row1_col1, row1_col2, row1_col3, row1_col4 = st.columns(4)
     
     with row1_col1:
         st.markdown(f'''
         <div class="metric-card">
-            <div class="metric-card-icon">🗺️</div>
+            <div class="metric-card-icon"></div>
             <div class="metric-value">{metrics['total_states']}</div>
             <div class="metric-label">Total States/UTs</div>
         </div>
@@ -473,7 +473,7 @@ def dashboard_overview(df):
     with row1_col2:
         st.markdown(f'''
         <div class="metric-card">
-            <div class="metric-card-icon">🏛️</div>
+            <div class="metric-card-icon"></div>
             <div class="metric-value">543</div>
             <div class="metric-label">Constituencies</div>
         </div>
@@ -482,7 +482,7 @@ def dashboard_overview(df):
     with row1_col3:
         st.markdown(f'''
         <div class="metric-card">
-            <div class="metric-card-icon">✋</div>
+            <div class="metric-card-icon"></div>
             <div class="metric-value">{metrics['total_votes']:,}</div>
             <div class="metric-label">Total Votes Cast</div>
         </div>
@@ -491,7 +491,7 @@ def dashboard_overview(df):
     with row1_col4:
         st.markdown(f'''
         <div class="metric-card">
-            <div class="metric-card-icon">👥</div>
+            <div class="metric-card-icon"></div>
             <div class="metric-value">{metrics['total_candidates']:,}</div>
             <div class="metric-label">Total Candidates</div>
         </div>
@@ -503,7 +503,7 @@ def dashboard_overview(df):
     with row2_col1:
         st.markdown(f'''
         <div class="metric-card">
-            <div class="metric-card-icon">🏆</div>
+            <div class="metric-card-icon"></div>
             <div class="metric-value">{metrics['max_wins_party']}</div>
             <div class="metric-label">Leading Party ({metrics['max_wins_count']} Seats)</div>
         </div>
@@ -512,7 +512,7 @@ def dashboard_overview(df):
     with row2_col2:
         st.markdown(f'''
         <div class="metric-card">
-            <div class="metric-card-icon">📈</div>
+            <div class="metric-card-icon"></div>
             <div class="metric-value" style="font-size: 1.2rem;">{metrics['largest_margin_winner']}</div>
             <div class="metric-label">Largest Victory Margin</div>
         </div>
@@ -521,14 +521,14 @@ def dashboard_overview(df):
     with row2_col3:
         st.markdown(f'''
         <div class="metric-card">
-            <div class="metric-card-icon">🔝</div>
+            <div class="metric-card-icon"></div>
             <div class="metric-value" style="font-size: 1.3rem;">{metrics['highest_turnout_const']}</div>
             <div class="metric-label">Highest Turnout Constituency</div>
         </div>
         ''', unsafe_allow_html=True)
 
     # --- Visualizations Section ---
-    st.markdown('<div class="section-header">📈 Performance Analytics</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-header">Performance Analytics</div>', unsafe_allow_html=True)
     
     # Party Performance Chart
     col1, col2 = st.columns([2, 1])
@@ -555,7 +555,7 @@ def dashboard_overview(df):
         st.plotly_chart(fig_donut, use_container_width=True)
 
     # Victory Margins Analysis
-    st.markdown('<div class="section-header">🎯 Victory Margin Analysis</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-header">Victory Margin Analysis</div>', unsafe_allow_html=True)
     
     col3, col4 = st.columns(2)
     
@@ -582,22 +582,22 @@ def dashboard_overview(df):
     st.plotly_chart(top_margins_chart, use_container_width=True)
 
     # Additional insights
-    st.markdown('<div class="section-header">💡 Key Insights</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-header">Key Insights</div>', unsafe_allow_html=True)
     
     insight_col1, insight_col2, insight_col3 = st.columns(3)
     
     with insight_col1:
         close_contests = len(metrics['margin_df'][metrics['margin_df']['Margin'] < 5000])
-        st.info(f"🔥 **Close Contests:** {close_contests} constituencies decided by less than 5,000 votes")
+        st.info(f"**Close Contests:** {close_contests} constituencies decided by less than 5,000 votes")
     
     with insight_col2:
         landslide_wins = len(metrics['margin_df'][metrics['margin_df']['Margin'] > 100000])
-        st.success(f"🏆 **Landslide Victories:** {landslide_wins} constituencies won by more than 1 lakh votes")
+        st.success(f"**Landslide Victories:** {landslide_wins} constituencies won by more than 1 lakh votes")
     
     with insight_col3:
         # Fixed calculation using 543 constituencies
         avg_candidates_per_seat = metrics['total_candidates'] / 543
-        st.warning(f"👥 **Competition Level:** Average {avg_candidates_per_seat:.1f} candidates per constituency")
+        st.warning(f"**Competition Level:** Average {avg_candidates_per_seat:.1f} candidates per constituency")
 
 
 
@@ -610,7 +610,7 @@ def dashboard_overview(df):
 
 def constituency_results(df):
     """Display constituency-wise results with enhanced visualizations"""
-    st.header("🏛️ Constituency-wise Results")
+    st.header("Constituency-wise Results")
     
     col1, col2 = st.columns(2)
     
@@ -649,12 +649,12 @@ def constituency_results(df):
 
 
     #   Display results in a formatted table
-        st.subheader("📋 Candidate Performance")
+        st.subheader("Candidate Performance")
         for idx, row in constituency_data.iterrows():
             if row['Winner']:
                 st.markdown(f"""
                 <div style="background-color: #90EE90; padding: 10px; border-radius: 5px; margin: 5px 0;">
-                    🏆 WINNER: <b>{row['Candidate']}</b> ({row['Party']}) - {row['Total Votes']:,} votes ({row['Vote Share']:.2f}%)
+                    WINNER: <b>{row['Candidate']}</b> ({row['Party']}) - {row['Total Votes']:,} votes ({row['Vote Share']:.2f}%)
                 </div>
                 """, unsafe_allow_html=True)
                
@@ -682,7 +682,7 @@ def constituency_results(df):
                 st.metric("Runner-up", runner_up['Candidate'])
         
         # Comprehensive Visualizations
-        st.header("📊 Visual Analysis")
+        st.header("Visual Analysis")
         
         # 1. Main Vote Distribution Charts
         col1, col2 = st.columns(2)
@@ -717,7 +717,7 @@ def constituency_results(df):
             st.plotly_chart(fig_pie, use_container_width=True)
         
         # 2. Vote Share Analysis
-        st.subheader("📈 Vote Share Analysis")
+        st.subheader("Vote Share Analysis")
         
         col1, col2 = st.columns(2)
         
@@ -751,7 +751,7 @@ def constituency_results(df):
             st.plotly_chart(fig_donut, use_container_width=True)
         
         # 3. Performance Metrics Visualization
-        st.subheader("🎯 Performance Metrics")
+        st.subheader("Performance Metrics")
         
         # Create performance comparison chart
         performance_data = constituency_data.copy()
@@ -802,7 +802,7 @@ def constituency_results(df):
         
         # 4. Margin Analysis
         if len(constituency_data) > 1:
-            st.subheader("⚖️ Victory Margin Analysis")
+            st.subheader("Victory Margin Analysis")
             
             # Calculate margins between consecutive candidates
             margins_data = []
@@ -851,7 +851,7 @@ def constituency_results(df):
         
         # 5. Party Performance Summary
         if len(constituency_data['Party'].unique()) > 1:
-            st.subheader("🏛️ Party Performance Summary")
+            st.subheader("Party Performance Summary")
             
             party_summary = constituency_data.groupby('Party').agg({
                 'Total Votes': ['sum', 'count'],
@@ -879,7 +879,7 @@ def constituency_results(df):
             st.plotly_chart(fig_party_performance, use_container_width=True)
         
         # 6. Competition Intensity Analysis
-        st.subheader("🔥 Competition Intensity")
+        st.subheader("Competition Intensity")
         
         col1, col2, col3 = st.columns(3)
         
@@ -900,41 +900,41 @@ def constituency_results(df):
                 st.metric("Competitiveness", f"{competitiveness:.1f}%")
         
         # 7. Insights and Summary
-        st.subheader("🔍 Key Insights")
+        st.subheader("Key Insights")
         
         insights = []
         
         # Winner analysis
-        insights.append(f"🏆 **{winner['Candidate']}** from **{winner['Party']}** won with **{winner['Total Votes']:,} votes** ({winner['Vote Share']:.2f}% vote share)")
+        insights.append(f"**{winner['Candidate']}** from **{winner['Party']}** won with **{winner['Total Votes']:,} votes** ({winner['Vote Share']:.2f}% vote share)")
         
         # Margin analysis
         if len(constituency_data) > 1:
             if margin_percentage < 5:
-                insights.append(f"🔥 **Close Contest**: Victory margin of only {margin_percentage:.2f}% indicates a highly competitive race")
+                insights.append(f"**Close Contest**: Victory margin of only {margin_percentage:.2f}% indicates a highly competitive race")
             elif margin_percentage > 20:
-                insights.append(f"💪 **Dominant Victory**: {margin_percentage:.2f}% margin shows strong candidate support")
+                insights.append(f"**Dominant Victory**: {margin_percentage:.2f}% margin shows strong candidate support")
             else:
-                insights.append(f"⚖️ **Moderate Victory**: {margin_percentage:.2f}% margin indicates decent lead")
+                insights.append(f"**Moderate Victory**: {margin_percentage:.2f}% margin indicates decent lead")
         
         # Party performance
         unique_parties = len(constituency_data['Party'].unique())
-        insights.append(f"🏛️ **{unique_parties} different parties** contested in this constituency")
+        insights.append(f"**{unique_parties} different parties** contested in this constituency")
         
         # Vote concentration
         top_3_share = constituency_data.head(3)['Vote Share'].sum()
-        insights.append(f"📊 Top 3 candidates secured **{top_3_share:.1f}%** of total votes")
+        insights.append(f"Top 3 candidates secured **{top_3_share:.1f}%** of total votes")
         
         # Turnout quality
         if constituency_data['Vote Share'].iloc[0] > 50:
-            insights.append(f"✅ **Clear Mandate**: Winner secured majority with {constituency_data['Vote Share'].iloc[0]:.1f}% vote share")
+            insights.append(f"**Clear Mandate**: Winner secured majority with {constituency_data['Vote Share'].iloc[0]:.1f}% vote share")
         else:
-            insights.append(f"📈 **Fractured Mandate**: Winner secured {constituency_data['Vote Share'].iloc[0]:.1f}% vote share (less than 50%)")
+            insights.append(f"**Fractured Mandate**: Winner secured {constituency_data['Vote Share'].iloc[0]:.1f}% vote share (less than 50%)")
         
         for insight in insights:
             st.write(insight)
         
         # 8. Export Options
-        st.subheader("📥 Export Options")
+        st.subheader("Export Options")
         
         col1, col2 = st.columns(2)
         
@@ -968,7 +968,7 @@ def constituency_results(df):
 
 def party_analysis(df):
     """Display party-wise analysis"""
-    st.header("🎯 Party-wise Analysis")
+    st.header("Party-wise Analysis")
     
     # Calculate party statistics
     winners_df = df[df['Winner'] == True]
@@ -1009,7 +1009,7 @@ def party_analysis(df):
 
 def candidate_comparison(df):
     """Compare two candidates with detailed visualizations"""
-    st.header("⚖️ Candidate Comparison")
+    st.header("Candidate Comparison")
     
     candidates = df['Candidate'].unique()
     
@@ -1065,7 +1065,7 @@ def candidate_comparison(df):
             st.metric("Higher Votes", higher_votes)
         
         # Visualizations Section
-        st.header("📊 Visual Comparison")
+        st.header("Visual Comparison")
         
         # 1. Side-by-side vote comparison
         col1, col2 = st.columns(2)
@@ -1139,7 +1139,7 @@ def candidate_comparison(df):
             st.plotly_chart(fig_pie2, use_container_width=True)
         
         # 3. Performance Radar Chart
-        st.subheader("🎯 Performance Radar Chart")
+        st.subheader("Performance Radar Chart")
         
         # Normalize values for radar chart (0-100 scale)
         max_votes = df['Total Votes'].max()
@@ -1200,11 +1200,11 @@ def candidate_comparison(df):
         st.plotly_chart(fig_radar, use_container_width=True)
         
         # 4. Constituency Competition Analysis
-        st.subheader("🏟️ Constituency Competition Analysis")
+        st.subheader("Constituency Competition Analysis")
         
         if cand1_data['PC Name'] == cand2_data['PC Name']:
             # Same constituency - direct competition
-            st.success("🎯 Direct Competition: Both candidates contested from the same constituency!")
+            st.success("Direct Competition: Both candidates contested from the same constituency!")
             
             same_const_data = df[df['PC Name'] == cand1_data['PC Name']].sort_values('Total Votes', ascending=False)
             
@@ -1247,7 +1247,7 @@ def candidate_comparison(df):
         
         else:
             # Different constituencies
-            st.info("📍 Different Constituencies: Candidates contested from different areas")
+            st.info("Different Constituencies: Candidates contested from different areas")
             
             col1, col2 = st.columns(2)
             
@@ -1264,43 +1264,43 @@ def candidate_comparison(df):
                 st.metric("Position in Constituency", f"#{pos2} out of {len(const2_competition)}")
         
         # 5. Additional Insights
-        st.subheader("🔍 Additional Insights")
+        st.subheader("Additional Insights")
         
         insights = []
         
         # Vote efficiency
         if cand1_data['Vote Share'] > cand2_data['Vote Share']:
-            insights.append(f"📈 **{candidate1}** has a higher vote share ({cand1_data['Vote Share']:.2f}%) compared to **{candidate2}** ({cand2_data['Vote Share']:.2f}%)")
+            insights.append(f"**{candidate1}** has a higher vote share ({cand1_data['Vote Share']:.2f}%) compared to **{candidate2}** ({cand2_data['Vote Share']:.2f}%)")
         else:
-            insights.append(f"📈 **{candidate2}** has a higher vote share ({cand2_data['Vote Share']:.2f}%) compared to **{candidate1}** ({cand1_data['Vote Share']:.2f}%)")
+            insights.append(f"**{candidate2}** has a higher vote share ({cand2_data['Vote Share']:.2f}%) compared to **{candidate1}** ({cand1_data['Vote Share']:.2f}%)")
         
         # Winner status
         if cand1_data['Winner'] and not cand2_data['Winner']:
-            insights.append(f"🏆 **{candidate1}** won their constituency while **{candidate2}** lost")
+            insights.append(f"**{candidate1}** won their constituency while **{candidate2}** lost")
         elif cand2_data['Winner'] and not cand1_data['Winner']:
-            insights.append(f"🏆 **{candidate2}** won their constituency while **{candidate1}** lost")
+            insights.append(f"**{candidate2}** won their constituency while **{candidate1}** lost")
         elif cand1_data['Winner'] and cand2_data['Winner']:
-            insights.append(f"🏆 Both candidates won their respective constituencies")
+            insights.append(f"Both candidates won their respective constituencies")
         else:
-            insights.append(f"❌ Both candidates lost their respective constituencies")
+            insights.append(f"Both candidates lost their respective constituencies")
         
         # Party analysis
         if cand1_data['Party'] == cand2_data['Party']:
-            insights.append(f"🤝 Both candidates belong to the same party: **{cand1_data['Party']}**")
+            insights.append(f"Both candidates belong to the same party: **{cand1_data['Party']}**")
         else:
-            insights.append(f"⚡ Candidates belong to different parties: **{candidate1}** ({cand1_data['Party']}) vs **{candidate2}** ({cand2_data['Party']})")
+            insights.append(f"Candidates belong to different parties: **{candidate1}** ({cand1_data['Party']}) vs **{candidate2}** ({cand2_data['Party']})")
         
         # State analysis
         if cand1_data['State'] == cand2_data['State']:
-            insights.append(f"📍 Both candidates contested from **{cand1_data['State']}**")
+            insights.append(f"Both candidates contested from **{cand1_data['State']}**")
         else:
-            insights.append(f"🗺️ Candidates contested from different states: **{candidate1}** from {cand1_data['State']}, **{candidate2}** from {cand2_data['State']}")
+            insights.append(f"Candidates contested from different states: **{candidate1}** from {cand1_data['State']}, **{candidate2}** from {cand2_data['State']}")
         
         for insight in insights:
             st.write(insight)
         
         # Export comparison
-        st.subheader("📥 Export Comparison")
+        st.subheader("Export Comparison")
         if st.button("Export Comparison to CSV"):
             csv = comparison_data.to_csv(index=False)
             st.download_button(
@@ -1311,16 +1311,16 @@ def candidate_comparison(df):
             )
     
     elif candidate1 == candidate2:
-        st.warning("⚠️ Please select two different candidates for comparison.")
+        st.warning("Please select two different candidates for comparison.")
     else:
-        st.info("👆 Please select two candidates to compare their performance.")
+        st.info("Please select two candidates to compare their performance.")
 
 
 
 
 def state_summary(df):
     """Display enhanced state-wise summary with detailed winner analysis"""
-    st.header("🗺️ State-wise Summary")
+    st.header("State-wise Summary")
     
     selected_state = st.selectbox("Select State for Analysis", sorted(df['State'].unique()))
     
@@ -1364,10 +1364,10 @@ def state_summary(df):
         st.metric("State Vote Share", f"{state_vote_share:.2f}%")
     
     # Detailed Winners Analysis
-    st.header("🏆 Winners Analysis")
+    st.header("Winners Analysis")
     
     if not state_winners.empty:
-        st.subheader("📋 All Winners in State")
+        st.subheader("All Winners in State")
         
         # Display winners in a formatted table
         winners_display = state_winners[['Candidate', 'Party', 'PC Name', 'Total Votes', 'Vote Share']].copy()
@@ -1380,7 +1380,7 @@ def state_summary(df):
         st.dataframe(winners_display, use_container_width=True)
         
         # Top Performers
-        st.subheader("🥇 Top Performing Winners")
+        st.subheader("Top Performing Winners")
         
         col1, col2 = st.columns(2)
         
@@ -1419,7 +1419,7 @@ def state_summary(df):
             st.plotly_chart(fig_top_share, use_container_width=True)
     
     # Party-wise Analysis
-    st.header("🏛️ Party-wise Analysis")
+    st.header("Party-wise Analysis")
     
     # Party-wise seat distribution in state
     party_seats_state = state_winners['Party'].value_counts()
@@ -1490,7 +1490,7 @@ def state_summary(df):
         st.plotly_chart(fig_party_share, use_container_width=True)
     
     # Constituency-wise Analysis
-    st.header("🗳️ Constituency-wise Analysis")
+    st.header("Constituency-wise Analysis")
     
     constituency_summary = state_data.groupby('PC Name').agg({
         'Total Votes': 'sum',
@@ -1551,7 +1551,7 @@ def state_summary(df):
     
     # Victory Margins Analysis
     if not state_winners.empty:
-        st.header("⚖️ Victory Margins Analysis")
+        st.header("Victory Margins Analysis")
         
         # Calculate victory margins for each constituency
         margin_data = []
@@ -1623,7 +1623,7 @@ def state_summary(df):
             st.plotly_chart(fig_margin_dist, use_container_width=True)
     
     # Performance Insights
-    st.header("🔍 State Performance Insights")
+    st.header("State Performance Insights")
     
     insights = []
     
@@ -1634,36 +1634,36 @@ def state_summary(df):
         total_seats = len(state_winners)
         dominance_percentage = (dominant_seats / total_seats) * 100
         
-        insights.append(f"🏛️ **{dominant_party}** is the dominant party with **{dominant_seats} seats** ({dominance_percentage:.1f}% of total seats)")
+        insights.append(f"**{dominant_party}** is the dominant party with **{dominant_seats} seats** ({dominance_percentage:.1f}% of total seats)")
     
     # Vote concentration
     if len(party_votes) > 0:
         top_3_parties_votes = party_votes.head(3).sum()
         total_state_votes = state_data['Total Votes'].sum()
         concentration = (top_3_parties_votes / total_state_votes) * 100
-        insights.append(f"📊 Top 3 parties secured **{concentration:.1f}%** of total votes in the state")
+        insights.append(f"Top 3 parties secured **{concentration:.1f}%** of total votes in the state")
     
     # Competition analysis
     if 'margins_df' in locals() and not margins_df.empty:
         avg_margin = margins_df['Margin_Percentage'].mean()
         close_contests = len(margins_df[margins_df['Margin_Percentage'] < 5])
         
-        insights.append(f"⚖️ Average victory margin is **{avg_margin:.2f}%** with **{close_contests} close contests** (margin < 5%)")
+        insights.append(f"Average victory margin is **{avg_margin:.2f}%** with **{close_contests} close contests** (margin < 5%)")
     
     # Candidate diversity
     avg_candidates = state_data.groupby('PC Name').size().mean()
-    insights.append(f"👥 Average of **{avg_candidates:.1f} candidates** per constituency indicates {'high' if avg_candidates > 10 else 'moderate' if avg_candidates > 5 else 'low'} competition")
+    insights.append(f"Average of **{avg_candidates:.1f} candidates** per constituency indicates {'high' if avg_candidates > 10 else 'moderate' if avg_candidates > 5 else 'low'} competition")
     
     # Vote efficiency
     if not state_winners.empty:
         avg_winner_share = state_winners['Vote Share'].mean()
-        insights.append(f"🎯 Winners achieved an average vote share of **{avg_winner_share:.1f}%**")
+        insights.append(f"Winners achieved an average vote share of **{avg_winner_share:.1f}%**")
     
     for insight in insights:
         st.write(insight)
     
     # Export Options
-    st.header("📥 Export State Data")
+    st.header("Export State Data")
     
     col1, col2, col3 = st.columns(3)
     
@@ -1704,7 +1704,7 @@ def state_summary(df):
 
 def analytics_charts(df):
     """Display various analytics charts"""
-    st.header("📊 Advanced Analytics")
+    st.header("Advanced Analytics")
     
     tab1, tab2, tab3 = st.tabs(["Vote Distribution", "Top Performers", "Victory Margins"])
     
@@ -1755,7 +1755,7 @@ def analytics_charts(df):
 
 def search_and_filters(df):
     """Search and filter functionality with conditional visualizations"""
-    st.header("🔍 Search & Filter")
+    st.header("Search & Filter")
     
     col1, col2 = st.columns(2)
     
@@ -1798,11 +1798,11 @@ def search_and_filters(df):
                         use_container_width=True)
             
             # Visualization Section - Only show if search is applied
-            st.header("📊 Data Visualizations")
+            st.header("Data Visualizations")
             
             # Party-wise Analysis
             if len(filtered_df['Party'].unique()) > 1:
-                st.subheader("🏛️ Party-wise Analysis")
+                st.subheader("Party-wise Analysis")
                 
                 col1, col2 = st.columns(2)
                 
@@ -1844,7 +1844,7 @@ def search_and_filters(df):
             
             # Constituency-wise Analysis
             if len(filtered_df['PC Name'].unique()) > 1:
-                st.subheader("🗳️ Constituency-wise Analysis")
+                st.subheader("Constituency-wise Analysis")
                 
                 # Number of candidates per constituency
                 constituency_candidates = filtered_df.groupby('PC Name').size().sort_values(ascending=False)
@@ -1883,7 +1883,7 @@ def search_and_filters(df):
             specific_constituencies = filtered_df['PC Name'].unique()
             if len(specific_constituencies) <= 5:  # Show detailed analysis for specific constituencies
                 for constituency in specific_constituencies:
-                    st.subheader(f"📍 Detailed Analysis: {constituency}")
+                    st.subheader(f"Detailed Analysis: {constituency}")
                     
                     const_data = filtered_df[filtered_df['PC Name'] == constituency].sort_values('Total Votes', ascending=False)
                     
@@ -1930,7 +1930,7 @@ def search_and_filters(df):
                             st.metric("Winning Margin", f"{winner['Vote Share']:.2f}%")
             
             # Candidate Analysis
-            st.subheader("👤 Candidate Analysis")
+            st.subheader("Candidate Analysis")
             
             # Top performers
             top_candidates = filtered_df.nlargest(10, 'Total Votes')
@@ -1965,7 +1965,7 @@ def search_and_filters(df):
                 st.plotly_chart(fig_scatter, use_container_width=True)
             
             # Summary Statistics
-            st.subheader("📈 Summary Statistics")
+            st.subheader("Summary Statistics")
             
             col1, col2, col3, col4 = st.columns(4)
             
@@ -1980,7 +1980,7 @@ def search_and_filters(df):
             
             # Additional insights
             if len(filtered_df) > 1:
-                st.subheader("🔍 Key Insights")
+                st.subheader("Key Insights")
                 
                 # Highest vote share
                 highest_vote_share = filtered_df.loc[filtered_df['Vote Share'].idxmax()]
@@ -1997,7 +1997,7 @@ def search_and_filters(df):
                     st.write(f"**Most Active Party:** {top_party} with {party_candidate_count.iloc[0]} candidates")
             
             # Export functionality
-            st.subheader("📥 Export Data")
+            st.subheader("Export Data")
             if st.button("Export Results to CSV"):
                 csv = filtered_df.to_csv(index=False)
                 st.download_button(
@@ -2009,7 +2009,7 @@ def search_and_filters(df):
         else:
             st.warning("No results found for the current search criteria.")
     else:
-        st.info("👆 Please enter a search term or adjust the vote share range to see results and visualizations.")
+        st.info("Please enter a search term or adjust the vote share range to see results and visualizations.")
 
 
 
@@ -2066,7 +2066,7 @@ def main():
 #     """Add detailed copyright and information section"""
 #     st.markdown("---")
     
-#     st.subheader("📊 About This Application")
+#     st.subheader("About This Application")
     
 #     col1, col2 = st.columns(2)
     
@@ -2075,11 +2075,11 @@ def main():
 #         **2024 Lok Sabha Election Analysis Tool**
         
 #         This comprehensive dashboard provides:
-#         - 🔍 Advanced search and filtering
-#         - ⚖️ Candidate comparisons
-#         - 🏛️ Constituency-wise analysis
-#         - 🗺️ State-wise summaries
-#         - 📊 Interactive visualizations
+#         - Advanced search and filtering
+#         - Candidate comparisons
+#         - Constituency-wise analysis
+#         -️ State-wise summaries
+#         - Interactive visualizations
         
 #         **Features:**
 #         - Real-time data filtering
@@ -2099,9 +2099,9 @@ def main():
 #         **Version:** 1.0.0
         
 #         **Contact Information:**
-#         - 📧 Email: razaaatif25@gmail.com
-#         - 🌐 Github: https://github.com/Aatifraza123
-#         - 📱 Support: +91-8804819102
+#         - Email: razaaatif25@gmail.com
+#         - Github: https://github.com/Aatifraza123
+#         - Support: +91-8804819102
 #         """)
     
 #     # Disclaimer
